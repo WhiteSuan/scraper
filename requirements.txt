@@ -9,4 +9,3 @@ pytz==2018.5
 selenium==3.14.1
 static3==0.7.0
 urllib3==1.23
-python==3.7.0
