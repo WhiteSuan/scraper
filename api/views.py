@@ -12,9 +12,10 @@ from django.http import JsonResponse
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	chrome_options = Options()
-	chrome_options.add_argument('--no-sandbox')
-	browser = webdriver.Chrome(chrome_options=chrome_options)
+	options = Options()
+	options.addArguments("--no-sandbox");
+	options.addArguments("--disable-dev-shm-usage");
+	browser = webdriver.Chrome(chrome_options=options)
 	browser.get(var1)
 	delay = 10 # seconds
 	try:
