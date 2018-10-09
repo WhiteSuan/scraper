@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	browser = webdriver.Chrome(executable_path=r"$HOME/.chromedriver/bin/chromedriver")
+	browser = webdriver.Chrome()
 	browser.get(var1)
 	delay = 100 # seconds 
 	try:
