@@ -12,7 +12,7 @@ from django.http import JsonResponse
 def jsscraper(var1,var2,var3):
 	browser = webdriver.Chrome()
 	browser.get(var1)
-	delay = 100 # seconds 
+	delay = 10 # seconds 
 	try:
 		if (var2 == "class"):
 			myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME, var3)))
