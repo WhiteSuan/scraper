@@ -15,7 +15,8 @@ def jsscraper(var1,var2,var3):
 		'browserName': 'chrome',
 		'chromeOptions': {
 			'useAutomationExtension': False,
-			'forceDevToolsScreenshot': True
+			'forceDevToolsScreenshot': True,
+			'args': ['--start-maximized', '--disable-infobars']
 		}
 	}
 	browser = webdriver.Chrome(desired_capabilities=capabilities)
