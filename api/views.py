@@ -8,17 +8,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from django.http import JsonResponse
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	chrome_options = Options()
-	chrome_options.add_argument('--headless')
-	chrome_options.add_argument('--no-sandbox')
-	chrome_options.add_argument('--disable-dev-shm-usage')
-	chrome_options.setBinary("$HOME/app/.apt/usr/bin/google-chrome")
-	browser = webdriver.Chrome(chrome_options=chrome_options)
+	capabilities = DesiredCapabilities.Chrome()
+	capabilities.setCapability("chrome.binary", "$HOME/app/.apt/usr/bin/google-chrome")
+	browser = webdriver.Chrome(desired_capabilities=capabilities)
 	browser.get(var1)
-	delay = 10 # seconds 
+	delay = 10 # seconds
 	try:
 		if (var2 == "class"):
 			myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME, var3)))
@@ -30,7 +28,7 @@ def jsscraper(var1,var2,var3):
 		return HttpResponse(html)
 	except TimeoutException:
 		return HttpResponse("Loading took too much time!")
-		browser.close()	
+		browser.close()
 	
 class APIview(TemplateView):
 	template_name = 'api/test.html'			
