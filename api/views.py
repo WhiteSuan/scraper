@@ -12,7 +12,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	capabilities = DesiredCapabilities.Chrome()
+	DesiredCapabilities capabilities = new DesiredCapabilities();
 	capabilities.setCapability("chrome.binary", "$HOME/app/.apt/usr/bin/google-chrome")
 	browser = webdriver.Chrome(desired_capabilities=capabilities)
 	browser.get(var1)
