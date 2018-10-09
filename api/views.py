@@ -11,15 +11,12 @@ from django.http import JsonResponse
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	capabilities = {
-		'browserName': 'chrome',
-		'chromeOptions': {
-			'useAutomationExtension': False,
-			'forceDevToolsScreenshot': True,
-			'args': ['--start-maximized', '--disable-infobars']
-		}
-	}
-	browser = webdriver.Chrome(desired_capabilities=capabilities)
+	chrome_options = Options()
+	chrome_options.add_argument('--headless')
+	chrome_options.add_argument('--no-sandbox')
+	chrome_options.add_argument('--disable-dev-shm-usage')
+	chrome_options.setBinary("$HOME/app/.apt/usr/bin/google-chrome")
+	browser = webdriver.Chrome(chrome_options=chrome_options)
 	browser.get(var1)
 	delay = 10 # seconds 
 	try:
