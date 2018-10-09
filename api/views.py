@@ -12,7 +12,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 # Create your views here.
 def jsscraper(var1,var2,var3):
 	capabilities = DesiredCapabilities.CHROME;
-	capabilities = {'binary_location': "$HOME/app/.apt/usr/bin/google-chrome"}
+	capabilities = {'binary_location': "$HOME/app/.apt/opt/google/chrome/chrome"}
 	browser = webdriver.Chrome(desired_capabilities=capabilities)
 	browser.get(var1)
 	delay = 10 # seconds
