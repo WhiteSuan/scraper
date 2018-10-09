@@ -2,18 +2,19 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from django.http import JsonResponse
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 
 # Create your views here.
 def jsscraper(var1,var2,var3):
-	capabilities = DesiredCapabilities.CHROME;
-	capabilities = {'binary_location': "$HOME/app/.apt/usr/bin/google-chrome"}
-	browser = webdriver.Chrome(desired_capabilities=capabilities)
+	chrome_options = Options()
+	chrome_options.add_argument('--no-sandbox')
+	browser = webdriver.Chrome(chrome_options=chrome_options)
 	browser.get(var1)
 	delay = 10 # seconds
 	try:
