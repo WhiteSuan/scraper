@@ -13,8 +13,12 @@ from django.http import JsonResponse
 # Create your views here.
 def jsscraper(var1,var2,var3):
 	options = Options()
-	options.addArguments("--no-sandbox");
+	options.addArguments("start-maximized");
+	options.addArguments("disable-infobars");
+	options.addArguments("--disable-extensions");
+	options.addArguments("--disable-gpu");
 	options.addArguments("--disable-dev-shm-usage");
+	options.addArguments("--no-sandbox");
 	browser = webdriver.Chrome(chrome_options=options)
 	browser.get(var1)
 	delay = 10 # seconds
