@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('', include('api.urls')),
 	path('getHtml', include('api.urls')),
+	path('proxy', include('api.urls')),
+	path('getProxy', include('api.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

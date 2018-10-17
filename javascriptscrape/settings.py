@@ -25,7 +25,11 @@ SECRET_KEY = '1%w%a)ho+=9m$_0r4#u2b)(mht4bs9w%teqs=+#j#v=yonrg^r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1","scraper-utils.scalingo.io",]
+ALLOWED_HOSTS = [
+    "localhost", "127.0.0.1","scraper-utils.scalingo.io",
+    "localhost", "127.0.0.1","utils.tuggl.com",
+    "localhost", "127.0.0.1","scraper-utils.tuggl.com",
+]
 
 
 # Application definition

@@ -4,26 +4,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException,WebDriverException
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from w3lib.http import basic_auth_header
 import sys
 
-options = Options()
-options.add_argument("start-maximized");
-options.add_argument("disable-infobars");
-options.add_argument("--disable-extensions");
-options.add_argument("--disable-gpu");
-options.add_argument("--disable-dev-shm-usage");
-options.add_argument("--no-sandbox");
-browser = webdriver.Chrome(chrome_options=options)
-browser.get("https://www.adairs.com.au/furniture/bedheads/")
-delay = 10 # seconds 
-try:
-	myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME,"lazy")))
-	html = browser.page_source
-	browser.close()
-	print(html)
-except TimeoutException:
-	print ("Loading took too much time!")
-	browser.close()
-except WebDriverException as e:
-	print(str(e))
-	browser.close()
+proxy = "proxy.crawlera.com:8010"
+username = "fcb973633f45443cb0999a782ac6f286"
+password = ""
+
+service_args = [
+	"--ignore-ssl-errors=true",
+	"--ssl-protocol=any",
+	"--proxy={}".format(proxy),
+	"--proxy-type=http",
+]
+
+caps = DesiredCapabilities.PHANTOMJS
+authentication_token = basic_auth_header(username, password).decode('utf-8')
+caps['phantomjs.page.customHeaders.Proxy-Authorization'] = authentication_token
+
+driver = webdriver.PhantomJS(
+	service_args=service_args,
+	desired_capabilities=caps
+)
+driver.get("https://www.empiretoday.com/")
+html = driver.page_source
+driver.close()
+print(html)

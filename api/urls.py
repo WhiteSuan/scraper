@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.urls import path
 from django.conf.urls import url
-from .views import APIview, API
+from .views import APIview, API, PROXYview, PROXY
 
 urlpatterns = [
-	path('', APIview.as_view(), name='api'), 
-	path('getHtml', API.as_view(), name='api'), 
+	path('', APIview.as_view(), name='api'),
+	path('getHtml', API.as_view(), name='api'),
+	path('proxy', PROXYview.as_view(), name='api'),
+	path('getProxy', PROXY.as_view(), name='api'),
 ]
