@@ -1,33 +1,18 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException,WebDriverException
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from w3lib.http import basic_auth_header
+from selenium.common.exceptions import TimeoutException
 import sys
 
-proxy = "proxy.crawlera.com:8010"
-username = "fcb973633f45443cb0999a782ac6f286"
-password = ""
-
-service_args = [
-	"--ignore-ssl-errors=true",
-	"--ssl-protocol=any",
-	"--proxy={}".format(proxy),
-	"--proxy-type=http",
-]
-
-caps = DesiredCapabilities.PHANTOMJS
-authentication_token = basic_auth_header(username, password).decode('utf-8')
-caps['phantomjs.page.customHeaders.Proxy-Authorization'] = authentication_token
-
-driver = webdriver.PhantomJS(
-	service_args=service_args,
-	desired_capabilities=caps
-)
-driver.get("https://www.empiretoday.com/")
-html = driver.page_source
-driver.close()
-print(html)
+browser = webdriver.Chrome(executable_path=r"C:\Users\ynxnguyen\Downloads\chromedriver_win32\chromedriver.exe")
+browser.get("https://www.bedbathandbeyond.com/store/category/gifts/gifts-by-interest/fitness-health-gifts/14830?ml=v2&icid=gift_promo17")
+delay = 10 # seconds
+try:
+    myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.CLASS_NAME, 'prodImg')))
+    html = browser.page_source
+    browser.close()
+    print(html)
+except TimeoutException:
+    print ("Loading took too much time!")
+    browser.close()
